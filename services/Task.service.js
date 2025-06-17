@@ -3,7 +3,7 @@ const { Task } = require("../models");
 class TaskService {
 
     find = async () => {
-        const tasks = await Task.find({});
+        const tasks = await Task.find({}).sort({ createdAt: -1 });
         return tasks;
     };
 
@@ -21,6 +21,11 @@ class TaskService {
     delete = async (id) => {
         const deletedTask = await Task.findByIdAndDelete(id);
         return deletedTask;
+    };
+
+    markAsDone = async (id) => {
+        const updatedTask = await Task.findByIdAndUpdate(id, { status: "DONE" }, { new: true });
+        return updatedTask;
     };
 }
 
