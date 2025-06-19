@@ -11,7 +11,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/api/v1",Routes);
-server.use("api/v1/uploads", express.static("uploads"));
+server.use("/api/v1/uploads", express.static("uploads"));
 
 server.use("/", (req, res) => {
     res.send("<h1>Server Is Running</h1>");
